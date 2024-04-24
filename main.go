@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	apiClient, err := client.NewClientWithOpts(client.FromEnv)
+	apiClient, err := client.NewClientWithOpts(client.FromEnv, client.WithVersionFromEnv())
 	if err != nil {
 		panic(err)
 	}
