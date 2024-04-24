@@ -31,7 +31,7 @@ jobs:
         if: runner.os == 'macos'
         run: |
           brew install colima
-          colima start --runtime containerd
+          colima start
           docker ps -a
       - run: docker context list
       - name: Docker run
