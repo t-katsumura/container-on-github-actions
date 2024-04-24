@@ -30,6 +30,8 @@ jobs:
         if: runner.os == 'macos'
         run: |
           brew install colima
+          ls -la ~/.colima
+          export DOCKER_HOST=unix:///$HOME/.colima/docker.sock
           colima start
       - run: ps
       - name: Docker run
