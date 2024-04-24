@@ -30,9 +30,8 @@ jobs:
       - name: Setup docker (missing on MacOS)
         if: runner.os == 'macos'
         run: |
-          brew install docker lima
-          limactl start template://docker
-          export DOCKER_HOST=$(limactl list docker --format 'unix://{{.Dir}}/sock/docker.sock')
+          brew install colima
+          colima start --runtime containerd
           docker ps -a
       - run: docker context list
       - name: Docker run
