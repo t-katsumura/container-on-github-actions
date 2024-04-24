@@ -13,16 +13,14 @@ jobs:
         os:
           - ubuntu-latest
           - windows-latest
-          - macos-latest
           - macos-13
     steps:
       - run: git config --global core.autocrlf false
       - uses: actions/checkout@v4
-      # - uses: actions/setup-go@v5
-      #   with:
-      #     check-latest: true
-      #     go-version-file: ./go.mod
-      # - run: go run ./...
+      - uses: actions/setup-go@v5
+        with:
+          check-latest: true
+          go-version-file: ./go.mod
 
       # Running docker example.
       # Docker is available on linux and windows by default.
@@ -38,3 +36,5 @@ jobs:
         run: |
           docker ps
           docker run --rm hello-world
+          docker run -d -p 8080:80 nginx:alpine
+      - run: go run ./...
