@@ -31,7 +31,7 @@ jobs:
         run: |
           brew install docker colima
           ls -R ~/
-          export DOCKER_HOST=unix:///$HOME/.colima/docker.sock
+          # export DOCKER_HOST=unix:///$HOME/.colima/docker.sock
           colima start
       - run: ps
       - name: Docker run
