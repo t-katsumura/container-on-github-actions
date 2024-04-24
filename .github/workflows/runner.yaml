@@ -13,8 +13,8 @@ jobs:
         os:
           - ubuntu-latest
           - windows-latest
-          - macos-13
-          - macos-14
+          - macos-latest
+          - macos-latest-large
     steps:
       - run: git config --global core.autocrlf false
       - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
       - name: Setup docker (missing on MacOS)
         if: runner.os == 'macos'
         run: |
-          brew install lima
+          brew install docker lima
           limactl start template://docker
           export DOCKER_HOST=$(limactl list docker --format 'unix://{{.Dir}}/sock/docker.sock')
           docker ps -a
