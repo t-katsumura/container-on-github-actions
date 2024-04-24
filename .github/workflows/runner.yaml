@@ -1,0 +1,36 @@
+name: Runner
+
+on: [push, workflow_dispatch]
+
+jobs:
+  unit:
+    name: Runner
+    runs-on: ${{ matrix.os }}-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu
+          - windows
+          - macos
+    steps:
+      - run: git config --global core.autocrlf false
+      - uses: actions/checkout@v4
+      # - uses: actions/setup-go@v5
+      #   with:
+      #     check-latest: true
+      #     go-version-file: ./go.mod
+      # - run: go run ./...
+
+      # Running docker example.
+      # Docker is available on linux and windows by default.
+      # But not on macos.
+      - name: Setup docker (missing on MacOS)
+        if: runner.os == 'macos'
+        run: |
+          brew install docker
+          colima start
+      - run: ps
+      - name: Docker run
+        run: docker run --rm hello-world
