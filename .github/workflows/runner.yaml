@@ -30,8 +30,10 @@ jobs:
         if: runner.os == 'macos'
         run: |
           brew install docker colima
-          docker ps -a
+          brew services start colima
           colima start
+          docker ps -a
+      - run: docker context list
       - run: ps
       - name: Docker run
         run: |
