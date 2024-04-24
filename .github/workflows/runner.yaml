@@ -12,8 +12,10 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
+          - ubuntu-latest
           - windows-latest
           - macos-13
+          - macos-14
     steps:
       - run: git config --global core.autocrlf false
       - uses: actions/checkout@v4
@@ -34,7 +36,6 @@ jobs:
           colima start
           docker ps -a
       - run: docker context list
-      - run: ps
       - name: Docker run
         run: |
           docker ps
