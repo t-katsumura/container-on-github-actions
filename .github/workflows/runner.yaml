@@ -5,15 +5,15 @@ on: [push, workflow_dispatch]
 jobs:
   unit:
     name: Runner
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
         os:
-          - ubuntu
-          - windows
-          - macos
+          - ubuntu-latest
+          - windows-latest
+          - macos-13
     steps:
       - run: git config --global core.autocrlf false
       - uses: actions/checkout@v4
